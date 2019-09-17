@@ -1,10 +1,9 @@
 # LearningOpenGL
 Creating things using OpenGL.
 
-##### Table of Contents  
-[Headers](#headers)    
-<a name="headers"/>
-## Headers
+##### Table of Contents
+<a name="1 - Hello World"/>
+<a name="2 - Hello Triangle"/>
 
 ## 1 - Hello World
 ![alt text](Images/1-HelloWindow.png "Hello Window")
