@@ -1,7 +1,7 @@
 # LearningOpenGL
 Creating things using OpenGL.
 
-##### Table of Contents  
+## Table of Contents  
 [1 - Hello World](#1---hello-world)
 <a name="1 - Hello World"/>
 
