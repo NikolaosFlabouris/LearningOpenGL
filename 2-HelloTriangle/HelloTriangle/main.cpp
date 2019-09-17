@@ -1,5 +1,3 @@
-//#define GLFW_INCLUDE_NONE
-
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <stdio.h>
@@ -22,7 +20,6 @@ unsigned int vertexVaoHandle;
 
 // Handle to our shader program.
 unsigned int programID;
-
 
 ///
 /// Process all input by querying GLFW whether relevant keys are pressed/released
@@ -66,9 +63,9 @@ int setVertexData()
      * You can define more triangles to draw here
      */
     float vertices[] = {
-            -0.5f, -0.5f, -0.0f,	// Bottom left
-            0.5f, -0.5f, -0.0f,		// Bottom right
-            0.0f, 0.5f, -0.0f		// Top middle
+         -0.5f, -0.5f, 0.0f, // left  
+          0.5f, -0.5f, 0.0f, // right 
+          0.0f,  0.5f, 0.0f  // top   
     };
 
     float colours[] = {
@@ -130,9 +127,7 @@ void render()
     glBindVertexArray(vertexVaoHandle);
 
     // Send command to GPU to draw the data in the current VAO as triangles
-    glDrawArrays(GL_TRIANGLES, 0, NUM_VERTS);
-
-    glBindVertexArray(0);	// Un-bind the VAO
+    glDrawArrays(GL_TRIANGLES, 0, 3);
 
     glFlush();	// Guarantees previous commands have been completed before continuing
 }
@@ -188,7 +183,7 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use. 0 indicates error.
-    programID = LoadShaders("minimal.vert", "minimal.frag");
+    programID = ShaderUtils::LoadShaders("minimal.vert", "minimal.frag");
     if(programID == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;

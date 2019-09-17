@@ -78,8 +78,8 @@
     <LibraryPath>E:\Applications\Libraries\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>E:\Applications\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Applications\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Libraries\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Libraries\Libs;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

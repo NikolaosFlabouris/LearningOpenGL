@@ -4,8 +4,8 @@
 #include <iostream>
 
 // Function signatures.
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height);
+void ProcessInput(GLFWwindow* window);
 
 // Screen size.
 const unsigned int SCR_WIDTH = 800;
@@ -36,7 +36,7 @@ int main()
     glfwMakeContextCurrent(window);
 
     // Callback to change OpenGL viewport size as window size changes.
-    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+    glfwSetFramebufferSizeCallback(window, FramebufferSizeCallback);
 
     // Load all GLAD OpenGL function pointers.
     if(!gladLoadGLLoader(( GLADloadproc) glfwGetProcAddress))
@@ -49,7 +49,7 @@ int main()
     while(!glfwWindowShouldClose(window))
     {
         // Process any relevant user input.
-        processInput(window);
+        ProcessInput(window);
 
         // Render.
         // Set clear colour and then clear the colour buffer by applying that colour everywhere.
@@ -74,7 +74,7 @@ int main()
 ///
 /// \param window - the active GLFW Window.
 ///
-void processInput(GLFWwindow* window)
+void ProcessInput(GLFWwindow* window)
 {
     // Escape key closes window.
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
@@ -91,7 +91,7 @@ void processInput(GLFWwindow* window)
 /// \param width - the new width of the window.
 /// \param height - the new height of the window.
 ///
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
     // Set the OpenGL viewport to be that of the new window size.
     glViewport(0, 0, width, height);
