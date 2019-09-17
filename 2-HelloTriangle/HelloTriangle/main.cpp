@@ -15,11 +15,16 @@
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 
-// Handle to our VAO generated in setShaderData method.
-unsigned int vertexVaoHandle;
+// Handle to our triangle and rectangle VAOs.
+unsigned int triangleVertexVaoHandle;
+unsigned int rectangleVertexVaoHandle;
 
 // Handle to our shader program.
 unsigned int shaderID;
+
+// To track what is currently being displayed.
+bool isWireframe = false;
+bool isRectangle = false;
 
 ///
 /// Process all input by querying GLFW whether relevant keys are pressed/released
@@ -33,6 +38,39 @@ void ProcessInput(GLFWwindow* window)
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, true);
+    }
+}
+
+///
+/// Function callback attached to mouse left click to change the shape being displayed.
+///
+///
+void ChangeShapeCallback(GLFWwindow* window, int button, int action, int mods)
+{
+    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+        if(!isWireframe && !isRectangle)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            isWireframe = true;
+        }
+        else if(isWireframe && !isRectangle)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            isWireframe = false;
+            isRectangle = true;
+        }
+        else if(!isWireframe && isRectangle)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            isWireframe = true;
+        }
+        else if(isWireframe && isRectangle)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            isWireframe = false;
+            isRectangle = false;
+        }
     }
 }
 
@@ -51,11 +89,11 @@ void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 }
 
 ///
-/// Sets the shader uniforms and vertex data. This happens ONCE only, before any frames are rendered.
+/// Sets the shader uniforms and triangle vertex data. This happens ONCE only, before any frames are rendered.
 ///
 /// \return - 0 for success, error otherwise
 ///
-int SetVertexData()
+int SetTriangleVertexData()
 {
     // Set of 3 vertices (9 floats) defining one triangle.
     float vertices[] = {
@@ -63,6 +101,9 @@ int SetVertexData()
           0.5f, -0.5f, 0.0f, // right 
           0.0f,  0.5f, 0.0f  // top   
     };
+
+    // Indices that define a triangle using the vertices.
+    unsigned int indices[] = {0, 1, 2};
 
     // Colours to be rendered at each vertex.
     float colours[] = {
@@ -73,21 +114,23 @@ int SetVertexData()
 
     // Generate storage on the GPU for our triangle and make it current.
     // A VAO is a set of data buffers on the GPU.
-    glGenVertexArrays(1, &vertexVaoHandle);
-    glBindVertexArray(vertexVaoHandle);
+    glGenVertexArrays(1, &triangleVertexVaoHandle);
+    glBindVertexArray(triangleVertexVaoHandle);
 
     // Generate 2 new buffers in our VAO to store per-vertex attributes.
     // One buffer to store vertex positions and another to store colours, read by shaders.
     unsigned int vertexBuffer;
     unsigned int colourBuffer;
+    unsigned int elementBuffer;
     glGenBuffers(1, &vertexBuffer);
     glGenBuffers(1, &colourBuffer);
+    glGenBuffers(1, &elementBuffer);
 
     // Allocate GPU memory for our vertices and copy them over.
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-    // Now we tell OpenGL how to interpret the data we just gave it.
+    // Enable buffer and tell OpenGL how to interpret the data we just gave it.
     // Tell OpenGL what shader variable it corresponds to (location = 0)
     // and how it is formatted (floating point, 3 values per vertex).
     glEnableVertexAttribArray(0);
@@ -97,11 +140,92 @@ int SetVertexData()
     glBindBuffer(GL_ARRAY_BUFFER, colourBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(colours), colours, GL_STATIC_DRAW);
 
-    // Now we tell OpenGL how to interpret the data we just gave it.
+    // Enable buffer and tell OpenGL how to interpret the data we just gave it.
     // Tell OpenGL what shader variable it corresponds to (location = 1)
     // and how it is formatted (floating point, 4 values per vertex).
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, VALS_PER_COLOUR, GL_FLOAT, GL_FALSE, 0, 0);
+
+    // Allocate GPU memory for our indices and copy them over.
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+
+    // An argument of zero unbinds all VAO's and stops us
+    // from accidentally changing the VAO state.
+    glBindVertexArray(0);
+
+    // The same is true for buffers, so we unbind it too.
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+    return 0;	// Return success.
+}
+
+///
+/// Sets the shader uniforms and rectangle vertex data. This happens ONCE only, before any frames are rendered.
+///
+/// \return - 0 for success, error otherwise
+///
+int SetRectangleVertexData()
+{
+    // Set of 4 vertices (12 floats) defining two triangles.
+    float vertices[] = {
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left   
+    };
+
+    // Indices that define two triangles using the vertices.
+    unsigned int indices[] = {
+        0, 1, 3,  // first Triangle
+        1, 2, 3   // second Triangle
+    };
+
+    // Colours to be rendered at each vertex.
+    float colours[] = {
+            1.0, 0.0, 0.0, 1.0,
+            0.0, 1.0, 0.0, 1.0,
+            0.0, 0.0, 1.0, 1.0,
+            1.0, 1.0, 1.0, 1.0
+    };
+
+    // Generate storage on the GPU for our triangle and make it current.
+    // A VAO is a set of data buffers on the GPU.
+    glGenVertexArrays(1, &rectangleVertexVaoHandle);
+    glBindVertexArray(rectangleVertexVaoHandle);
+
+    // Generate 2 new buffers in our VAO to store per-vertex attributes.
+    // One buffer to store vertex positions and another to store colours, read by shaders.
+    unsigned int vertexBuffer;
+    unsigned int colourBuffer;
+    unsigned int elementBuffer;
+    glGenBuffers(1, &vertexBuffer);
+    glGenBuffers(1, &colourBuffer);
+    glGenBuffers(1, &elementBuffer);
+
+    // Allocate GPU memory for our vertices and copy them over.
+    glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+    // Enable buffer and tell OpenGL how to interpret the data we just gave it.
+    // Tell OpenGL what shader variable it corresponds to (location = 0)
+    // and how it is formatted (floating point, 3 values per vertex).
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, VALS_PER_VERT, GL_FLOAT, GL_FALSE, 0, 0);
+
+    // Allocate GPU memory for our colours and copy them over.
+    glBindBuffer(GL_ARRAY_BUFFER, colourBuffer);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(colours), colours, GL_STATIC_DRAW);
+
+    // Enable buffer and tell OpenGL how to interpret the data we just gave it.
+    // Tell OpenGL what shader variable it corresponds to (location = 1)
+    // and how it is formatted (floating point, 4 values per vertex).
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, VALS_PER_COLOUR, GL_FLOAT, GL_FALSE, 0, 0);
+
+    // Allocate GPU memory for our indices and copy them over.
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, elementBuffer);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
     // An argument of zero unbinds all VAO's and stops us
     // from accidentally changing the VAO state.
@@ -125,11 +249,22 @@ void Render()
     // Specify the shader program we want to use.
     glUseProgram(shaderID);
 
-    // Make the VAO with our vertex data buffer current.
-    glBindVertexArray(vertexVaoHandle);
+    if(!isRectangle)
+    {
+        // Make the VAO with our vertex data buffer current.
+        glBindVertexArray(triangleVertexVaoHandle);
 
-    // Send command to GPU to draw the data in the current VAO as triangles.
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+        // Send command to GPU to draw the data in the current VAO as triangles.
+        glDrawElements(GL_TRIANGLES, 3, GL_UNSIGNED_INT, 0);
+    }
+    else
+    {
+        // Make the VAO with our vertex data buffer current.
+        glBindVertexArray(rectangleVertexVaoHandle);
+
+        // Send command to GPU to draw the data in the current VAO as triangles.
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    }
 
     glFlush();	// Guarantees previous commands have been completed before continuing.
 }
@@ -160,7 +295,7 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Instantiate GLFW window with screen resolution and title.
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Hello Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Hello Triangle, and more... (Left Click to change)", NULL, NULL);
 
     if(window == NULL)
     {
@@ -192,12 +327,22 @@ int main(int argc, char** argv)
         exit(1);
     }
 
-    // Set the vertex data for the program
-    if(SetVertexData() != 0)
+    // Set the vertex data for a triangle.
+    if(SetTriangleVertexData() != 0)
     {
         std::cout << "Failed to set vertex data." << std::endl;
         exit(1);
     }
+
+    // Set the vertex data for a rectangle.
+    if(SetRectangleVertexData() != 0)
+    {
+        std::cout << "Failed to set vertex data." << std::endl;
+        exit(1);
+    }
+
+    // Attach mouse click callback to change what is being displayed.
+    glfwSetMouseButtonCallback(window, ChangeShapeCallback);
 
     // The event loop, runs until the window is closed.
     // Each iteration redraws the window contents and checks for new events.
