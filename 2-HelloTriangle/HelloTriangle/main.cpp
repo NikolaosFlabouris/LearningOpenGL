@@ -320,7 +320,7 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use. 0 indicates error.
-    shaderID = ShaderUtils::LoadShaders("minimal.vert", "minimal.frag");
+    shaderID = ShaderUtils::LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
     if(shaderID == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
