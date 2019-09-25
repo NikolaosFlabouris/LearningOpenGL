@@ -24,8 +24,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{A8A6EAE9-4926-4245-8F88-843BBF496063}</ProjectGuid>
-    <RootNamespace>HelloTriangle</RootNamespace>
+    <ProjectGuid>{622E044D-31A1-4FCC-AC5B-1D6C1A542863}</ProjectGuid>
+    <RootNamespace>HelloTexture</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -74,8 +74,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>E:\Applications\Libraries\OpenGL\Includes;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\Applications\Libraries\OpenGL\Libs;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\Libraries\Includes;$(IncludePath)</IncludePath>
+    <LibraryPath>..\..\Libraries\Libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <IncludePath>..\..\Libraries\Includes;$(IncludePath)</IncludePath>
@@ -99,21 +99,18 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <LanguageStandard>Default</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>
-xcopy $(ProjectDir)Shaders $(OutDir)Shaders\ /E/Y</Command>
-      <Message>Copies over Shader folder to build folder.</Message>
+      <Command>xcopy $(ProjectDir)Shaders $(OutDir)Shaders\ /E/Y
+xcopy $(ProjectDir)Textures $(OutDir)Textures\ /E/Y</Command>
     </PostBuildEvent>
-    <PreBuildEvent>
-      <Command>
-      </Command>
-    </PreBuildEvent>
+    <PostBuildEvent>
+      <Message>Copies over Shader and Texture folder to build folder.</Message>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
