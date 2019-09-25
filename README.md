@@ -8,7 +8,7 @@ Creating things using OpenGL.
 [2 - Hello Triangle](#2---hello-triangle)
 <a name="2 - Hello Triangle"/>
 
-[3 - Hello Texture](#2---hello-texture)
+[3 - Hello Texture](#3---hello-texture)
 <a name="3 - Hello Texture"/>
 
 ## 1 - Hello World
