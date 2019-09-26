@@ -241,14 +241,28 @@ int SetRectangleVertexData()
 ///
 /// Calculate and apply transformation matrix.
 ///
-void ApplyTransform()
+void ApplyTransform1()
 {
     glm::mat4 transform = glm::mat4(1.0f);
-    transform = glm::rotate(transform, ( float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+    transform = glm::rotate(transform, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
     transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
     transform = glm::rotate(transform, (float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
     transform = glm::scale(transform, glm::vec3(0.5f, 0.5f, 0.0f));
     
+    unsigned int transformLoc = glGetUniformLocation(shaderID, "transform");
+    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
+}
+
+///
+/// Calculate and apply transformation matrix.
+///
+void ApplyTransform2()
+{
+    glm::mat4 transform = glm::mat4(1.0f);
+    transform = glm::rotate(transform, -(float) glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+    float scaleAmount = 0.15f + (0.15f + 0.15f * sin(3.0f * (float) glfwGetTime()));
+    transform = glm::scale(transform, glm::vec3(scaleAmount, scaleAmount, 0.0f));
+
     unsigned int transformLoc = glGetUniformLocation(shaderID, "transform");
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
 }
@@ -268,8 +282,14 @@ void Render()
     // Make the VAO with our vertex data buffer current.
     glBindVertexArray(rectangleVertexVaoHandle);
 
-    // Apply rotation, scale and/or translation.
-    ApplyTransform();
+    // Apply 1st rotation, scale and/or translation.
+    ApplyTransform1();
+
+    // Send command to GPU to draw the data in the current VAO as triangles.
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+
+    // Apply 2nd rotation, scale and/or translation.
+    ApplyTransform2();
 
     // Send command to GPU to draw the data in the current VAO as triangles.
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
