@@ -98,10 +98,11 @@ int SetRectangleVertexData()
     glGenVertexArrays(1, &rectangleVertexVaoHandle);
     glBindVertexArray(rectangleVertexVaoHandle);
 
-    // Generate 3 new buffers in our VAO to store per-vertex attributes.
+    // Generate 4 new buffers in our VAO to store per-vertex attributes.
     // One buffer to store vertex positions.
     // One buffer to store colours, read by shaders.
     // One buffer to store the vertices array indices that form the triangle shapes.
+    // One buffer to store the texture coordinates.
     unsigned int vertexBuffer;
     unsigned int colourBuffer;
     unsigned int elementBuffer;
