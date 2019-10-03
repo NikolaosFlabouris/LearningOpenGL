@@ -292,7 +292,7 @@ void Render()
     // and depth buffer. Called each frame so we don't draw over the top of everything previous.
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    glm::vec3 lightPos = glm::vec3(1.5 * sin(glfwGetTime()), sin(glfwGetTime() / 3.3), -4.0 + 1.5 * cos(glfwGetTime()));
+    glm::vec3 lightPos = glm::vec3(1.5 * sin(-glfwGetTime()), sin(glfwGetTime() / 3.3), -4.0 - 1.5 * cos(-glfwGetTime()));
 
     // --- DRAW CUBE
 
