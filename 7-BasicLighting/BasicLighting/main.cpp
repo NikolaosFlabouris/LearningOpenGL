@@ -11,7 +11,7 @@
 #include <Camera/camera.h>
 
 // Utility code to load and compile GLSL shader programs.
-#include <Shader/shader.hpp>
+#include <Shader/shader.h>
 
 // Utility to load in images.
 #define STB_IMAGE_IMPLEMENTATION
@@ -30,8 +30,8 @@ const unsigned int SCR_HEIGHT = 600;
 unsigned int rectangleVertexVaoHandle;
 
 // Handle to our shader program.
-unsigned int shaderIDCube;
-unsigned int shaderIDLight;
+Shader shaderIDCube = Shader();
+Shader shaderIDLight = Shader();
 
 Camera camera;
 
@@ -271,18 +271,16 @@ int SetCubeVertexData()
 ///
 /// Sends the camera details to the shader.
 ///
-void SendCameraDetails(int shaderID)
+void SendCameraDetails(Shader shaderID)
 {
     // Create view transformation matrix.
     glm::mat4 view = glm::lookAt(camera.Position, camera.Position + camera.Front, camera.Up);
     // Pass view transformation matrices to the shader
-    int viewlLoc = glGetUniformLocation(shaderID, "view");
-    glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
+    shaderID.SetUniformMat4("view", view);
 
     // Apply new FOV to projection.
     glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), ( float) SCR_WIDTH / ( float) SCR_HEIGHT, 0.1f, 100.0f);
-    int projectionLoc = glGetUniformLocation(shaderID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    shaderID.SetUniformMat4("projection", projection);
 }
 
 ///
@@ -299,7 +297,7 @@ void Render()
     // --- DRAW CUBE
 
     // Specify the shader program we want to use.
-    glUseProgram(shaderIDCube);
+    glUseProgram(shaderIDCube.ProgramID());
 
     // Make the VAO with our vertex data buffer current.
     glBindVertexArray(rectangleVertexVaoHandle);
@@ -308,31 +306,27 @@ void Render()
 
     // Set light colour
     glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
-    int lightColourLoc = glGetUniformLocation(shaderIDCube, "lightColour");
-    glUniform3fv(lightColourLoc, 1, glm::value_ptr(lightColour));
+    shaderIDCube.SetUniformVec3("lightColour", lightColour);
 
     // Set light position
-    int lightPosLoc = glGetUniformLocation(shaderIDCube, "lightPosition");
-    glUniform3fv(lightPosLoc, 1, glm::value_ptr(lightPos));
+    shaderIDCube.SetUniformVec3("lightPosition", lightPos);
 
     // Set object colour
     glm::vec3 objColour = glm::vec3(0.7f, 0.23f, 0.46f);
-    int colourLoc = glGetUniformLocation(shaderIDCube, "colour");
-    glUniform3fv(colourLoc, 1, glm::value_ptr(objColour));
+    shaderIDCube.SetUniformVec3("colour", objColour);
 
     // Calculate the model matrix for each object and pass it to shader before drawing.
     glm::mat4 model = glm::mat4(1.0f);
     model = glm::translate(model, glm::vec3(0.0, 0.0, -4.0));
     model = glm::rotate(model, glm::radians(73.0f), glm::vec3(1.0f, 0.3f, 0.5f));
-    int modelLoc = glGetUniformLocation(shaderIDCube, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    shaderIDCube.SetUniformMat4("model", model);
 
     glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
 
     // --- DRAW LIGHT
 
     // Specify the shader program we want to use.
-    glUseProgram(shaderIDLight);
+    glUseProgram(shaderIDLight.ProgramID());
 
     // Make the VAO with our vertex data buffer current.
     glBindVertexArray(rectangleVertexVaoHandle);
@@ -341,15 +335,13 @@ void Render()
 
     // Set light obj colour
     glm::vec3 lightObjColour = glm::vec3(1.0f, 1.0f, 1.0f);
-    int lightObjColourLoc = glGetUniformLocation(shaderIDLight, "colour");
-    glUniform3fv(lightObjColourLoc, 1, glm::value_ptr(lightObjColour));
+    shaderIDLight.SetUniformVec3("colour", lightObjColour);
 
     // Calculate the model matrix for each object and pass it to shader before drawing.
     model = glm::mat4(1.0f);
     model = glm::translate(model, lightPos);
     model = glm::scale(model, glm::vec3(0.23f, 0.23f, 0.23f));
-    modelLoc = glGetUniformLocation(shaderIDLight, "model");
-    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    shaderIDLight.SetUniformMat4("model", model);
 
     glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
 
@@ -410,16 +402,16 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use and use them. 0 indicates error.
-    shaderIDCube = ShaderUtils::LoadShaders("Shaders/litObject.vert", "Shaders/litObject.frag");
-    if(shaderIDCube == 0)
+    shaderIDCube.LoadShaders("Shaders/litObject.vert", "Shaders/litObject.frag");
+    if(shaderIDCube.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);
     }
 
     // Set up the shaders we are to use and use them. 0 indicates error.
-    shaderIDLight = ShaderUtils::LoadShaders("Shaders/lightSource.vert", "Shaders/lightSource.frag");
-    if(shaderIDLight == 0)
+    shaderIDLight.LoadShaders("Shaders/lightSource.vert", "Shaders/lightSource.frag");
+    if(shaderIDLight.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);

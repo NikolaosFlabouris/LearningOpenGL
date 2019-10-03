@@ -5,7 +5,7 @@
 #include <iostream>
 
 // Utility code to load and compile GLSL shader programs.
-#include <Shader/shader.hpp>
+#include <Shader/shader.h>
 
 // Utility to load in images.
 #define STB_IMAGE_IMPLEMENTATION
@@ -25,7 +25,7 @@ unsigned int triangleVertexVaoHandle;
 unsigned int rectangleVertexVaoHandle;
 
 // Handle to our shader program.
-unsigned int shaderID;
+Shader shader = Shader();
 
 ///
 /// Process all input by querying GLFW whether relevant keys are pressed/released
@@ -193,7 +193,7 @@ int SetRectangleVertexData()
     stbi_image_free(imageData1);
 
     // Bind uniform to texture.
-    glUniform1i(glGetUniformLocation(shaderID, "inputTexture1"), 0);
+    shader.SetUniformInt("inputTexture1", 0);
 
     // - Texture 2
 
@@ -225,7 +225,7 @@ int SetRectangleVertexData()
     stbi_image_free(imageData2);
 
     // Bind uniform to texture.
-    glUniform1i(glGetUniformLocation(shaderID, "inputTexture2"), 1);
+    shader.SetUniformInt("inputTexture2", 1);
 
     // An argument of zero unbinds all VAO's and stops us
     // from accidentally changing the VAO state.
@@ -247,7 +247,7 @@ void Render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Specify the shader program we want to use.
-    glUseProgram(shaderID);
+    glUseProgram(shader.ProgramID());
 
     // Make the VAO with our vertex data buffer current.
     glBindVertexArray(rectangleVertexVaoHandle);
@@ -309,14 +309,14 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use and use them. 0 indicates error.
-    shaderID = ShaderUtils::LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
-    if(shaderID == 0)
+    shader.LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
+    if(shader.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);
     }
 
-    glUseProgram(shaderID);
+    glUseProgram(shader.ProgramID());
 
     // Set the vertex data for a rectangle.
     if(SetRectangleVertexData() != 0)

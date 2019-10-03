@@ -5,7 +5,7 @@
 #include <iostream>
 
 // Utility code to load and compile GLSL shader programs.
-#include <Shader/shader.hpp>
+#include <Shader/shader.h>
 
 #define VALS_PER_VERT 3
 #define VALS_PER_COLOUR 4
@@ -20,7 +20,7 @@ unsigned int triangleVertexVaoHandle;
 unsigned int rectangleVertexVaoHandle;
 
 // Handle to our shader program.
-unsigned int shaderID;
+Shader shader = Shader();
 
 // To track what is currently being displayed.
 bool isWireframe = false;
@@ -251,7 +251,7 @@ void Render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Specify the shader program we want to use.
-    glUseProgram(shaderID);
+    glUseProgram(shader.ProgramID());
 
     if(!isRectangle)
     {
@@ -324,8 +324,8 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use. 0 indicates error.
-    shaderID = ShaderUtils::LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
-    if(shaderID == 0)
+    shader.LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
+    if(shader.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);

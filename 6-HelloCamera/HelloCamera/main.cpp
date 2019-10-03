@@ -8,7 +8,7 @@
 #include <iostream>
 
 // Utility code to load and compile GLSL shader programs.
-#include <Shader/shader.hpp>
+#include <Shader/shader.h>
 
 // Utility to load in images.
 #define STB_IMAGE_IMPLEMENTATION
@@ -27,7 +27,7 @@ const unsigned int SCR_HEIGHT = 600;
 unsigned int rectangleVertexVaoHandle;
 
 // Handle to our shader program.
-unsigned int shaderID;
+Shader shader = Shader();
 
 bool isPerspective;
 
@@ -148,8 +148,7 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
 
     // Apply new FOV to projection.
     glm::mat4 projection = glm::perspective(glm::radians(fov), ( float) SCR_WIDTH / ( float) SCR_HEIGHT, 0.1f, 100.0f);
-    int projectionLoc = glGetUniformLocation(shaderID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    shader.SetUniformMat4("projection", projection);
 }
 
 ///
@@ -340,7 +339,7 @@ int SetCubeVertexData()
     stbi_image_free(imageData1);
 
     // Bind uniform to texture.
-    glUniform1i(glGetUniformLocation(shaderID, "inputTexture1"), 0);
+    shader.SetUniformInt("inputTexture1", 0);
 
     // - Texture 2
 
@@ -372,7 +371,7 @@ int SetCubeVertexData()
     stbi_image_free(imageData2);
 
     // Bind uniform to texture.
-    glUniform1i(glGetUniformLocation(shaderID, "inputTexture2"), 1);
+    shader.SetUniformInt("inputTexture2", 1);
 
     // An argument of zero unbinds all VAO's and stops us
     // from accidentally changing the VAO state.
@@ -412,8 +411,7 @@ void ApplyTransformAndDraw()
         model = glm::translate(model, cubePositions[cube]);
         float angle = 73.0f * cube;
         model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
-        int modelLoc = glGetUniformLocation(shaderID, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        shader.SetUniformMat4("model", model);
 
         glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
     }
@@ -429,7 +427,7 @@ void Render()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Specify the shader program we want to use.
-    glUseProgram(shaderID);
+    glUseProgram(shader.ProgramID());
 
     // Make the VAO with our vertex data buffer current.
     glBindVertexArray(rectangleVertexVaoHandle);
@@ -439,7 +437,7 @@ void Render()
     // Create view transformation matrix.
     glm::mat4 view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
     // Pass view transformation matrices to the shader
-    int viewlLoc = glGetUniformLocation(shaderID, "view");
+    int viewlLoc = glGetUniformLocation(shader.ProgramID(), "view");
     glUniformMatrix4fv(viewlLoc, 1, GL_FALSE, glm::value_ptr(view));
 
     // Apply rotation, scale and/or translation send command to GPU to draw the data in the current VAO.
@@ -502,14 +500,14 @@ int main(int argc, char** argv)
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
     // Set up the shaders we are to use and use them. 0 indicates error.
-    shaderID = ShaderUtils::LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
-    if(shaderID == 0)
+    shader.LoadShaders("Shaders/minimal.vert", "Shaders/minimal.frag");
+    if(shader.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);
     }
 
-    glUseProgram(shaderID);
+    glUseProgram(shader.ProgramID());
 
     // Set the vertex data for a rectangle.
     if(SetCubeVertexData() != 0)
@@ -521,8 +519,7 @@ int main(int argc, char** argv)
     // Create initial perspective project view matrix.
     glm::mat4 projection = glm::perspective(glm::radians(fov), (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
     // Pass projection matrix to the shader.
-    int projectionLoc = glGetUniformLocation(shaderID, "projection");
-    glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
+    shader.SetUniformMat4("projection", projection);
 
     // Callbacks for camera control.
     glfwSetCursorPosCallback(window, mouse_callback);
