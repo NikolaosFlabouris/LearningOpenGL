@@ -304,14 +304,17 @@ void Render()
 
     SendCameraDetails(shaderIDCube);
 
-    // Set light colour
+    // Set light colour.
     glm::vec3 lightColour = glm::vec3(1.0f, 1.0f, 1.0f);
     shaderIDCube.SetUniformVec3("lightColour", lightColour);
 
-    // Set light position
+    // Set light position.
     shaderIDCube.SetUniformVec3("lightPosition", lightPos);
 
-    // Set object colour
+    // Set the camera position.
+    shaderIDCube.SetUniformVec3("viewPos", camera.Position);
+
+    // Set object colour.
     glm::vec3 objColour = glm::vec3(0.7f, 0.23f, 0.46f);
     shaderIDCube.SetUniformVec3("colour", objColour);
 
