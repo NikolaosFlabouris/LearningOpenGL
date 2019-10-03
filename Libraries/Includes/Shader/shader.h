@@ -202,10 +202,10 @@ public:
     }
 
 private:
-    const char* vertex_file_path_;
-    const char* fragment_file_path_;
-    const char* geomety_file_path_;
-    GLuint program_id_;
+    const char* vertex_file_path_ = nullptr;
+    const char* fragment_file_path_ = nullptr;
+    const char* geomety_file_path_ = nullptr;
+    GLuint program_id_ = 0;
 
     ///
     /// Compiles the shader code and checks for errors.
