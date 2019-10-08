@@ -324,7 +324,7 @@ void Render()
     model = glm::rotate(model, glm::radians(73.0f), glm::vec3(1.0f, 0.3f, 0.5f));
     shaderIDCube.SetUniformMat4("model", model);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
+    glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 verts per tri.
 
     // --- DRAW LIGHT
 
@@ -346,7 +346,7 @@ void Render()
     model = glm::scale(model, glm::vec3(0.23f, 0.23f, 0.23f));
     shaderIDLight.SetUniformMat4("model", model);
 
-    glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
+    glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 verts per tri.
 
     glFlush();	// Guarantees previous commands have been completed before continuing.
 }

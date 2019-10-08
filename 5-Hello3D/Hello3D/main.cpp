@@ -335,7 +335,7 @@ void ApplyTransformAndDraw()
 
         shader.SetUniformMat4("model", model);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 vetics per tri.
+        glDrawArrays(GL_TRIANGLES, 0, 36); // 36 vertices per cube. 2 tris per face, 3 verts per tri.
     }
 }
 
