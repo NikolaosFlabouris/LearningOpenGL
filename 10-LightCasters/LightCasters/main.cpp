@@ -117,7 +117,7 @@ void ScrollCallback(GLFWwindow* window, double xoffset, double yoffset)
 }
 
 ///
-/// Scroll callback simulates zoom by changing the FOV.
+/// Mouse callback used to change active light.
 ///
 void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
