@@ -17,8 +17,8 @@
 #include <Model/model.h>
 
 // Window size.
-const unsigned int SCR_WIDTH = 800;
-const unsigned int SCR_HEIGHT = 600;
+const unsigned int SCR_WIDTH = 1400;
+const unsigned int SCR_HEIGHT = 1000;
 
 Camera camera;
 
@@ -128,7 +128,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Instantiate GLFW window with screen resolution and title.
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Multiple Lights", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Model Loading", NULL, NULL);
 
     if(window == NULL)
     {
