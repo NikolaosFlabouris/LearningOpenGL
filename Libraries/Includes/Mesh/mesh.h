@@ -46,11 +46,11 @@ class Mesh
     unsigned int VAO;
 
     // Functions.
-    Mesh(vector<Vertex> vertices, vector<unsigned int> indices, vector<Texture> textures)
+    Mesh(vector<Vertex> verts, vector<unsigned int> idxs, vector<Texture> txts)
     {
-        vertices = vertices;
-        indices = indices;
-        textures = textures;
+        vertices = verts;
+        indices = idxs;
+        textures = txts;
 
         SetupMesh();
     }
