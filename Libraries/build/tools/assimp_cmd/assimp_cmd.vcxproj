@@ -1,0 +1,412 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3CEE0089-D8A2-3960-970E-7F7D2A47CE22}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>assimp_cmd</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimp_cmd.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">assimpd</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp_cmd.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">assimp</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp_cmd.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">assimp</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp_cmd.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">assimp</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;_DEBUG;EBUG:FULL;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;EBUG:FULL;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+E:\Applications\CMake\bin\cmake.exe -E copy_if_different E:/Documents/GitHub/LearningOpenGL/Libraries/build/code/Debug/assimp-vc142-mtd.dll E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Debug\assimp-vc142-mtd.lib;..\..\contrib\zlib\Debug\zlibstaticd.lib;..\..\contrib\irrXML\Debug\IrrXMLd.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/Documents/GitHub/LearningOpenGL/Libraries/build;E:/Documents/GitHub/LearningOpenGL/Libraries/build/$(Configuration);E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib;E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Debug/assimpd.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Debug/assimpd.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+E:\Applications\CMake\bin\cmake.exe -E copy_if_different E:/Documents/GitHub/LearningOpenGL/Libraries/build/code/Release/assimp-vc142-mt.dll E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\Release\assimp-vc142-mt.lib;..\..\contrib\zlib\Release\zlibstatic.lib;..\..\contrib\irrXML\Release\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/Documents/GitHub/LearningOpenGL/Libraries/build;E:/Documents/GitHub/LearningOpenGL/Libraries/build/$(Configuration);E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib;E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Release/assimp.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/Release/assimp.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+E:\Applications\CMake\bin\cmake.exe -E copy_if_different E:/Documents/GitHub/LearningOpenGL/Libraries/build/code/MinSizeRel/assimp-vc142-mt.dll E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\MinSizeRel\assimp-vc142-mt.lib;..\..\contrib\zlib\MinSizeRel\zlibstatic.lib;..\..\contrib\irrXML\MinSizeRel\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/Documents/GitHub/LearningOpenGL/Libraries/build;E:/Documents/GitHub/LearningOpenGL/Libraries/build/$(Configuration);E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib;E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/MinSizeRel/assimp.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/MinSizeRel/assimp.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /bigobj</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <CompileAs>CompileAsCpp</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;WIN32_LEAN_AND_MEAN;UNICODE;_UNICODE;ASSIMP_BUILD_NO_C4D_IMPORTER;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Documents\GitHub\LearningOpenGL\Libraries\build\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build;C:\Users\user_pc\Downloads\assimp-master\assimp-master\include;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code;C:\Users\user_pc\Downloads\assimp-master\assimp-master\.;C:\Users\user_pc\Downloads\assimp-master\assimp-master\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib;E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd;C:\Users\user_pc\Downloads\assimp-master\assimp-master\code\..\include;E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <Message></Message>
+      <Command>setlocal
+E:\Applications\CMake\bin\cmake.exe -E copy_if_different E:/Documents/GitHub/LearningOpenGL/Libraries/build/code/RelWithDebInfo/assimp-vc142-mt.dll E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>..\..\code\RelWithDebInfo\assimp-vc142-mt.lib;..\..\contrib\zlib\RelWithDebInfo\zlibstatic.lib;..\..\contrib\irrXML\RelWithDebInfo\IrrXML.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>E:/Documents/GitHub/LearningOpenGL/Libraries/build;E:/Documents/GitHub/LearningOpenGL/Libraries/build/$(Configuration);E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib;E:/Documents/GitHub/LearningOpenGL/Libraries/build/lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/RelWithDebInfo/assimp.lib</ImportLibrary>
+      <ProgramDataBaseFile>E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/RelWithDebInfo/assimp.pdb</ProgramDataBaseFile>
+      <SubSystem>Console</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/user_pc/Downloads/assimp-master/assimp-master/tools/assimp_cmd/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+E:\Applications\CMake\bin\cmake.exe -SC:/Users/user_pc/Downloads/assimp-master/assimp-master -BE:/Documents/GitHub/LearningOpenGL/Libraries/build --check-stamp-file E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/user_pc/Downloads/assimp-master/assimp-master/tools/assimp_cmd/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+E:\Applications\CMake\bin\cmake.exe -SC:/Users/user_pc/Downloads/assimp-master/assimp-master -BE:/Documents/GitHub/LearningOpenGL/Libraries/build --check-stamp-file E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/user_pc/Downloads/assimp-master/assimp-master/tools/assimp_cmd/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+E:\Applications\CMake\bin\cmake.exe -SC:/Users/user_pc/Downloads/assimp-master/assimp-master -BE:/Documents/GitHub/LearningOpenGL/Libraries/build --check-stamp-file E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/user_pc/Downloads/assimp-master/assimp-master/tools/assimp_cmd/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+E:\Applications\CMake\bin\cmake.exe -SC:/Users/user_pc/Downloads/assimp-master/assimp-master -BE:/Documents/GitHub/LearningOpenGL/Libraries/build --check-stamp-file E:/Documents/GitHub/LearningOpenGL/Libraries/build/tools/assimp_cmd/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Documents\GitHub\LearningOpenGL\Libraries\build\tools\assimp_cmd\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\assimp_cmd.rc" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\CompareDump.cpp" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\ImageExtractor.cpp" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\Main.cpp" />
+    <ClInclude Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\Main.h" />
+    <ClInclude Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\resource.h" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\WriteDumb.cpp" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\Info.cpp" />
+    <ClCompile Include="C:\Users\user_pc\Downloads\assimp-master\assimp-master\tools\assimp_cmd\Export.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Documents\GitHub\LearningOpenGL\Libraries\build\ZERO_CHECK.vcxproj">
+      <Project>{AE81ABE5-FA65-3ABF-B9C8-BC0630332C41}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\irrXML\IrrXML.vcxproj">
+      <Project>{226B2B5A-38A1-31C7-978D-B155B203036A}</Project>
+      <Name>IrrXML</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\Documents\GitHub\LearningOpenGL\Libraries\build\code\assimp.vcxproj">
+      <Project>{751D157F-43C3-3A9C-BB89-9DAC8EDEC4C1}</Project>
+      <Name>assimp</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+    <ProjectReference Include="E:\Documents\GitHub\LearningOpenGL\Libraries\build\contrib\zlib\zlibstatic.vcxproj">
+      <Project>{BFAC5AEB-B493-36B4-BA08-F6B3AB84A588}</Project>
+      <Name>zlibstatic</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
