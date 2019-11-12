@@ -15,12 +15,13 @@
 
 // Utility code to load models.
 #include <Model/model.h>
+#include "main.h"
 
 // Window size.
 const unsigned int SCR_WIDTH = 1400;
 const unsigned int SCR_HEIGHT = 1000;
 
-Camera camera;
+Camera camera(glm::vec3(0.0f, 0.0f, 4.0f));
 
 // General camera variables.
 bool firstMouse = true;
@@ -31,6 +32,8 @@ float lastY = SCR_HEIGHT / 2.0f;
 float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
+bool isWireframe = false;
+
 ///
 /// Process all input by querying GLFW whether relevant keys are pressed/released
 /// this frame and react accordingly.
@@ -40,16 +43,25 @@ float lastFrame = 0.0f;
 void ProcessInput(GLFWwindow* window)
 {
     if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
         glfwSetWindowShouldClose(window, true);
-
+    }
     if(glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
+    {
         camera.ProcessKeyboard(FORWARD, deltaTime);
+    }
     if(glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
+    {
         camera.ProcessKeyboard(BACKWARD, deltaTime);
+    }
     if(glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
+    {
         camera.ProcessKeyboard(LEFT, deltaTime);
+    }
     if(glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
+    {
         camera.ProcessKeyboard(RIGHT, deltaTime);
+    }
 }
 
 ///
@@ -62,7 +74,7 @@ void ProcessInput(GLFWwindow* window)
 ///
 void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
-    // make sure the viewport matches the new window dimensions; note that width and 
+    // Make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
     glViewport(0, 0, width, height);
 }
@@ -74,7 +86,7 @@ void FramebufferSizeCallback(GLFWwindow* window, int width, int height)
 /// \param xpos - the x position of the mouse.
 /// \param ypos - the y position of the mouse.
 ///
-void MouseCallback(GLFWwindow* window, double xpos, double ypos)
+void MouseMoveCallback(GLFWwindow* window, double xpos, double ypos)
 {
     if(firstMouse)
     {
@@ -92,6 +104,26 @@ void MouseCallback(GLFWwindow* window, double xpos, double ypos)
 
     // Look sensitivity control.
     camera.ProcessMouseMovement(xoffset, yoffset);
+}
+
+///
+/// Function callback attached to mouse left click to change the shape being displayed.
+///
+void MouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+    {
+        if(!isWireframe)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            isWireframe = true;
+        }
+        else if(isWireframe)
+        {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            isWireframe = false;
+        }
+    }
 }
 
 ///
@@ -128,7 +160,7 @@ int main()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Instantiate GLFW window with screen resolution and title.
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Model Loading", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Model Loading, Left Click = Toggle Wireframe", NULL, NULL);
 
     if(window == NULL)
     {
@@ -139,7 +171,8 @@ int main()
 
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, FramebufferSizeCallback);
-    glfwSetCursorPosCallback(window, MouseCallback);
+    glfwSetCursorPosCallback(window, MouseMoveCallback);
+    glfwSetMouseButtonCallback(window, MouseButtonCallback);
     glfwSetScrollCallback(window, ScrollCallback);
 
     // Capture mouse in window.
@@ -155,25 +188,21 @@ int main()
     // Enable depth testing.
     glEnable(GL_DEPTH_TEST);
 
-    // build and compile shaders
-    // -------------------------
-    Shader ourShader("Shaders/basicShader.vert", "Shaders/basicShader.frag");
-    if(ourShader.ProgramID() == 0)
+    // Build and compile shaders.
+    Shader unlitShader("Shaders/unlitShader.vert", "Shaders/unlitShader.frag");
+    if(unlitShader.ProgramID() == 0)
     {
         std::cout << "Failed to load shaders." << std::endl;
         exit(1);
     }
 
-    glUseProgram(ourShader.ProgramID());
+    glUseProgram(unlitShader.ProgramID());
 
     // Load models.
     Model ourModel("Models/nanosuit/nanosuit.obj");
 
     // Sets the (background) colour for each time the frame-buffer (colour buffer) is cleared
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-
-    // Draw in wireframe.
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // The event loop, runs until the window is closed.
     // Each iteration redraws the window contents and checks for new events.
@@ -192,17 +221,18 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         // View/Projection transformations.
-        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), ( float) SCR_WIDTH / ( float) SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 projection = glm::perspective(glm::radians(camera.Zoom), (float) SCR_WIDTH / (float) SCR_HEIGHT, 0.1f, 100.0f);
         glm::mat4 view = camera.GetViewMatrix();
-        ourShader.SetUniformMat4("projection", projection);
-        ourShader.SetUniformMat4("view", view);
+        unlitShader.SetUniformMat4("projection", projection);
+        unlitShader.SetUniformMat4("view", view);
 
         // Render the loaded model.
         glm::mat4 model = glm::mat4(1.0f);
         model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // translate it down so it's at the center of the scene.
         model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// it's a bit too big for our scene, so scale it down.
-        ourShader.SetUniformMat4("model", model);
-        ourModel.Draw(ourShader);
+        unlitShader.SetUniformMat4("model", model);
+
+        ourModel.Draw(unlitShader);
 
         glfwSwapBuffers(window);
         glfwPollEvents();

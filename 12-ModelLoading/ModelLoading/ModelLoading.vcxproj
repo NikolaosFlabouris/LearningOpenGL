@@ -135,6 +135,9 @@ xcopy $(ProjectDir)assimp-vc142-mtd.dll $(OutDir)assimp-vc142-mtd.dll* /Y</Comma
     <ClCompile Include="..\..\Libraries\Includes\glad\glad.c" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
