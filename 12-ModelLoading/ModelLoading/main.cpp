@@ -169,6 +169,9 @@ int main()
     // Load models.
     Model ourModel("Models/nanosuit/nanosuit.obj");
 
+    // Sets the (background) colour for each time the frame-buffer (colour buffer) is cleared
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
     // Draw in wireframe.
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
