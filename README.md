@@ -1,5 +1,5 @@
 # LearningOpenGL
-Creating things using OpenGL. Based on tutorials from <a>https://learnopengl.com/</a>.
+Creating things using OpenGL. Based on tutorials from <a>https://learnopengl.com/</a>. Preview images do not reflect actual performance or image quality.
 
 ## Table of Contents  
 [1 - Hello World](#1---hello-world)
@@ -51,7 +51,7 @@ Creating things using OpenGL. Based on tutorials from <a>https://learnopengl.com
 ![alt text](Images/4-HelloTransformations.gif "Hello Transform")
 
 ## 5 - Hello 3D
-![alt text](Images/3-Hello3D.gif "Hello 3D")
+![alt text](Images/5-Hello3D.gif "Hello 3D")
 
 ## 6 - Hello Camera
 ![alt text](Images/6-HelloCamera.gif "Hello Camera")
